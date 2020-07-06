@@ -26,6 +26,13 @@ const revolution = document.querySelector(".revolution");
 const deadline = document.querySelector(".deadline");
 const counter = document.querySelectorAll(".deadline-format h4");
 
+let tempDate = new Date();
+let tempYear = tempDate.getFullYear();
+let tempMonth = tempDate.getMonth();
+let tempDay = tempDate.getDate();
+
+// let futureDate = new Date(tempYear, tempMonth, tempDay + 10, 00,00);
+
 let futureDate = new Date(2030, 0, 1, 00, 00); //yyyy, m, d, hh, mm, ss, ms
 
 const year = futureDate.getFullYear();
