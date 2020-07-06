@@ -79,6 +79,13 @@ getReaminingTime = () => {
   counter.forEach((item, index) => {
     item.innerHTML = values[index];
   });
+  if (t < 0) {
+    clearInterval(countdown);
+    deadline.innerHTML = `<h4 class="expired">it's happening!</h4>`;
+  }
 }
+// countdown
+
+let countdown = setInterval(getReaminingTime, 1000);
 
 getReaminingTime();
