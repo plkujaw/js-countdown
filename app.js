@@ -41,9 +41,44 @@ day = (futureDay) => {
     return `${futureDay}nd`;
   } else if (futureDay % 10 === 3 && futureDay !== 13) {
     return `${futureDay}rd`;
-  } else {
+  }
     return `${futureDay}th`;
   }
+
+revolution.textContent = `revolution starts on ${weekday}, ${day(futureDate.getDate())} ${month} ${year} @0${hours}:0${minutes}`;
+
+// futureDay in ms
+const futureTime = futureDate.getTime();
+
+getReaminingTime = () => {
+  const today = new Date().getTime();
+  const t = futureTime - today;
+  // 1s = 1000ms
+  // 1m = 60s
+  // 1hr = 60min
+  // 1d = 24hr
+  // 1yr = 365/366 days
+
+  // values in ms
+  const oneYear = 24 * 60 * 60 * 1000 * 365;
+  const oneMonth = (24 * 60 * 60 * 1000 * 365) / 12;
+  const oneDay = 24 * 60 * 60 * 1000
+  const oneHour = 60 * 60 * 1000;
+  const oneMinute = 60 * 1000;
+
+  // calculate all values
+  let years = Math.floor(t / oneYear);
+  let months = Math.floor((t % oneYear) / oneMonth);
+  let days = Math.floor((t % oneMonth) / oneDay);
+  let hours = Math.floor((t % oneDay) / oneHour);
+  let minutes = Math.floor((t % oneHour) / oneMinute);
+
+  //set values array
+  const values = [years, months, days, hours, minutes];
+
+  counter.forEach((item, index) => {
+    item.innerHTML = values[index];
+  });
 }
 
-revolution.textContent = `revolution starts on ${weekday}, ${day(futureDate.getDate())} ${month} ${year} @0${hours}:0${minutes}`
+getReaminingTime();
